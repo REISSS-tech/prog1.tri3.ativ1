@@ -7,17 +7,17 @@ const srv = Bun.serve({
                 const search = url.searchParams
                 const nome = search.get("nome")
                 console.log(nome)
-                new Response("Andrei Bobão_GET")
+                new Response("professor resenha_GET")
             },
 
             POST: async (req) => {
                 const body = await req.body.text()
                 console.log(body)
-                return new Response("Andrei Bobão_POST")
+                return new Response("professor resenha_POST")
             },
 
-            PUT: () => new Response("Andrei Bobão_PUT"),
-            DELETE: () => new Response("Andrei Bobão_DELETE")
+            PUT: () => new Response("professor resenha_PUT"),
+            DELETE: () => new Response("professor resenha_DELETE")
         }
     }
 })
