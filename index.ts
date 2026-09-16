@@ -2,35 +2,38 @@ const srv = Bun.serve({
     port: 3000,
     routes: {
         "/": {
-            // CORREÇÃO: Tipando o parâmetro como Request
-            GET: (a: Request): Response => {
-                const url = new URL(a.url);
-                const search = url.searchParams;
-                const nome = search.get("nome");
-                console.log(nome);
-                return new Response("oi " + nome);
+            GET: (a) => {
+                const url = new URL(a.url)
+                const search = url.searchParams
+                const nome = search.get("nome")
+                console.log(nome)
+                return new Response("oi " + nome)
+            },
+        },
+
+        "/pessoa/:id": {
+            GET: (req) => {
+            return new Response(`oi ${req.params.id}`)
             }
         },
 
         "/test": {
-            // CORREÇÃO: Tipando o parâmetro como Request
-            GET: (req: Request): Response => {
-                const url = new URL(req.url);
-                const search = url.searchParams;
-                const nome = search.get("nome");
-                console.log(nome);
-                return new Response("professor resenha_GET");
+            GET: (req) => {
+                const url = new URL(req.url)
+                const search = url.searchParams
+                const nome = search.get("nome")
+                console.log(nome)
+                new Response("Andrei Bobão_GET")
             },
 
-            // CORREÇÃO: Tipando o parâmetro e o retorno da Promise
-            POST: async (req: Request): Promise<Response> => {
-                const body = await req.text();
-                console.log(body);
-                return new Response("professor resenha_POST");
+            POST: async (req) => {
+                const body = await req.body.text()
+                console.log(body)
+                return new Response("Andrei Bobão_POST")
             },
 
-            PUT: (): Response => new Response("professor resenha_PUT"),
-            DELETE: (): Response => new Response("professor resenha_DELETE")
+            PUT: () => new Response("Andrei Bobão_PUT"),
+            DELETE: () => new Response("Andrei Bobão_DELETE")
         }
     }
 })
